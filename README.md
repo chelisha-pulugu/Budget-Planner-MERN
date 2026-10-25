@@ -154,27 +154,9 @@ npm run check    # basic syntax check for server.js
 
 The app includes a production-ready Express setup where the frontend build is served from the same origin and `/health` remains available for health checks.
 
-### Docker
+### Vercel frontend with a separate backend
 
-From the project root:
-
-```bash
-docker build -t balancewise .
-```
-
-Run locally with environment variables:
-
-```bash
-docker run --rm -p 3000:3000 \
-  -e NODE_ENV=production \
-  -e MONGODB_URI="<your-mongodb-uri>" \
-  -e JWT_SECRET="<your-secret>" \
-  balancewise
-```
-
-Then open:
-- http://localhost:3000
-- http://localhost:3000/health
+Set the Vercel project Root Directory to the repository root (`.`), use `npm run build` as the build command, and set the Output Directory to `dist`. The root `vercel.json` forwards `/api/*` requests to the deployed Render backend and serves the Vite app for frontend routes. Update the backend destination in `vercel.json` if your backend URL changes.
 
 ## Notes
 
